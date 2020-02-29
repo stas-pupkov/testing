@@ -1,0 +1,7 @@
+target/
+*.bak
+*.iml
+.idea/
+.project
+.settings
+*.sh
