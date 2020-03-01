@@ -7,9 +7,9 @@ import java.util.concurrent.TimeUnit;
 
 public class SettingsForBrowser extends Functions {
 
-    String browserName = "chrome";
-    String browserVersion = "77.0";
-    String host = "www.sportmaster.ru";
+    private String browserName = "chrome";
+    private String browserVersion = "77.0";
+    private String host = "www.sportmaster.ru";
 
     @BeforeEach
     public void openBrowser() {

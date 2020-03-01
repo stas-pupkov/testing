@@ -2,7 +2,7 @@ package ru.pupkov.stas.base;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import java.util.Random;
 
@@ -12,35 +12,11 @@ public class Pages {
     public static Random rnd = new Random(System.currentTimeMillis());
 
     /**
-     * Главная страница сайта www.sportmaster.ru
+     * Шапка страницы сайта
      */
-    public class SportmasterMainPage {
-        private By nameField = By.id("inputEmail");
-        private By passwordField = By.id("inputPassword");
-        private By loginButton = By.id("log-in");
-        private By danger = By.cssSelector("[data-bind*='InvalidLoginPassword']");
-        private By listLanguages = By.id("changeLocale");
-
-        /**
-         * Ввести имя пользователя
-         */
-        public void setName(String name) {
-            driver.findElement(nameField).sendKeys(name);
-        }
-
-        /**
-         * Ввести пароль
-         */
-        public void setPassword(String password) {
-            driver.findElement(passwordField).sendKeys(password);
-        }
-
-        /**
-         * Нажать на кнопку "Войти"
-         */
-        public void clickLogin() {
-            driver.findElement(loginButton).click();
-        }
+    public class HeaderBar {
+        private By loginButton = By.cssSelector("[data-selenium = 'link_login']");
+        private By welcome = By.className("headerBar__welcome");
 
         /**
          * Получить указатель на кнопку "Войти"
@@ -50,17 +26,54 @@ public class Pages {
         }
 
         /**
-         * Получить поле с сообщением о неверном логине/пароле
+         * Получить указатель на поле приветствия пользователя
          */
-        public WebElement getDangerField() {
-            return driver.findElement(danger);
+        public By getWelcome() {
+            return welcome;
+        }
+    }
+
+    /**
+     * Страница авторизации
+     */
+    public class AuthorizationPage {
+        private By authorizationForm = By.id("loginForm");
+        private By emailField = By.cssSelector("[data-selenium = 'auth-field-email']");
+        private By passwordField = By.cssSelector("[data-selenium = 'auth-field-password']");
+        private By enterButton = By.id("submitButton");
+
+        /**
+         * Получить указатель на форму авторизации
+         */
+        public By getAuthorizationForm() {
+            return authorizationForm;
         }
 
         /**
-         * Нажать на кнопку выбора языка
+         * Вкладка авторизации по e-mail
+         * Ввести адрес электронной почты в поле "E-mail"
          */
-        public void clickListLanguages() {
-            driver.findElement(listLanguages).click();
+        public void setEmail(String email) {
+            Assert.assertTrue(driver.findElement(emailField).isDisplayed());
+            driver.findElement(emailField).clear();
+            driver.findElement(emailField).sendKeys(email);
+        }
+
+        /**
+         * Ввести пароль в поле "Пароль"
+         */
+        public void setPassword(String password) {
+            Assert.assertTrue(driver.findElement(passwordField).isDisplayed());
+            driver.findElement(passwordField).clear();
+            driver.findElement(passwordField).sendKeys(password);
+        }
+
+        /**
+         * Нажать кнопку "Войти"
+         */
+        public void clickEnterButton() {
+            Assert.assertTrue(driver.findElement(enterButton).isDisplayed());
+            driver.findElement(enterButton).click();
         }
     }
 }

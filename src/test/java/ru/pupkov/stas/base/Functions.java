@@ -7,11 +7,12 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.net.URL;
 
 
-public class Functions extends Pages {
+public class Functions extends Utils {
 
     private static final int DEFAULT_DELAY = 1;
 
@@ -39,13 +40,20 @@ public class Functions extends Pages {
     }
 
     /**
-     * Универсальный метод
      * Ожидание появления заданного элемента на экране
-     *
-     * @param bySomething
+     * @param bySomething - параметр элемента
      */
     public void waitingAppearanceVisibility(By bySomething) {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOfElementLocated(bySomething));
     }
+
+    /**
+     * Нажать по заданному элементу
+     */
+    public void clickBy(By bySomething) {
+        Assert.assertTrue(driver.findElement(bySomething).isDisplayed());
+        driver.findElement(bySomething).click();
+    }
+
 }
