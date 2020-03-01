@@ -25,5 +25,14 @@ public class AuthorizationTest extends SettingsForBrowser implements Authorizati
         waitingAppearanceVisibility(new HeaderBar().getWelcome());
     }
 
+    @Test
+    public void enterWithIncorrectPassword() {
+        AuthorizationPage authPage = new AuthorizationPage();
+        waitingAppearanceVisibility(authPage.getAuthorizationForm());
+        authPage.setEmail(email);
+        authPage.setPassword(incorrectPassword);
+        authPage.clickEnterButton();
 
+        authPage.checkErrorLoginOrPassword();
+    }
 }

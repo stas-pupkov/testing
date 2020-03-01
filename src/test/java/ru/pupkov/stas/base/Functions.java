@@ -2,6 +2,7 @@ package ru.pupkov.stas.base;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -54,6 +55,10 @@ public class Functions extends Utils {
     public void clickBy(By bySomething) {
         Assert.assertTrue(driver.findElement(bySomething).isDisplayed());
         driver.findElement(bySomething).click();
+    }
+    public void clickBy(WebElement webElement) {
+        Assert.assertTrue(webElement.isDisplayed());
+        webElement.click();
     }
 
 }

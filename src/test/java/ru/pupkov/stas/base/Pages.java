@@ -42,6 +42,8 @@ public class Pages {
         private By passwordField = By.cssSelector("[data-selenium = 'auth-field-password']");
         private By enterButton = By.id("submitButton");
 
+        private By loginOrPasswordError = By.cssSelector("[data-selenium = 'auth-error-description']");
+
         /**
          * Получить указатель на форму авторизации
          */
@@ -75,5 +77,63 @@ public class Pages {
             Assert.assertTrue(driver.findElement(enterButton).isDisplayed());
             driver.findElement(enterButton).click();
         }
+
+        /**
+         * Проверить, что появилось сообщение об ошибке логина или пароля
+         */
+        public void checkErrorLoginOrPassword() {
+            Assert.assertTrue(driver.findElement(loginOrPasswordError).isDisplayed());
+            driver.findElement(loginOrPasswordError).getText().matches("Неверный логин или пароль");
+        }
+    }
+
+    /**
+     * Форма для совершения покупок
+     */
+    public class ShoppingPage {
+        private By searchField = By.cssSelector("[data-selenium = 'product_search_input']");
+        private By submitSearchButton = By.cssSelector("[data-selenium = 'product_search_button']");
+        private By addToBasketButton = By.cssSelector("[data-selenium = 'add_to_basket']");
+        private By popupWindow = By.id("basketMessage");
+
+        /**
+         * Получить указатель на поле поиска товара
+         */
+        public By getSearchField() {
+            return searchField;
+        }
+
+        /**
+         * Ввести название искомого товара в поле поиска
+         */
+        public void setTitleDesiredItemInSearch(String title) {
+            Assert.assertTrue(driver.findElement(searchField).isDisplayed());
+            driver.findElement(searchField).clear();
+            driver.findElement(searchField).sendKeys(title);
+        }
+
+        /**
+         * Нажать кнопку поиска товара
+         */
+        public void clickSearchButton() {
+            Assert.assertTrue(driver.findElement(submitSearchButton).isDisplayed());
+            driver.findElement(submitSearchButton).click();
+        }
+
+        /**
+         * Получить указатель на кнопку добавления товара в корзину
+         */
+        public By getAddToBasket() {
+            return addToBasketButton;
+        }
+
+        /**
+         * Получить указатель на всплывающее сообщение о добавлении товара в корзину
+         */
+        public By getPopupWindow() {
+            return popupWindow;
+        }
+
+
     }
 }
