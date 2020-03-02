@@ -15,29 +15,25 @@ import java.net.URL;
 
 public class Functions extends Utils {
 
-    private static final int DEFAULT_DELAY = 1;
-
     /**
      * Универсальный метод
      * Открытие браузера в контейнере docker'a
      */
-    public WebDriver openDefiniteBrowser(String browserName, String browserVersion, String... host) {
+    public WebDriver openDefiniteBrowser() {
         DesiredCapabilities capability = new DesiredCapabilities();
-        capability.setBrowserName(browserName);
-        capability.setVersion(browserVersion);
+        capability.setBrowserName(BROWSER_NAME);
+        capability.setVersion(BROWSER_VERSION);
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         capability.setCapability("enableVNC", true);
         capability.setCapability("env", new String[]{"LANG=ru_RU.UTF-8", "LANGUAGE=ru:en", "LC_ALL=ru_RU.UTF-8"});
 
         //Запускаем браузер с настройками черер Docker
         try {
-
-            driver = new RemoteWebDriver(new URL("http://" + host + "/wd/hub"), capability);
+            return driver = new RemoteWebDriver(new URL("http://" + SELENOID_HOST + ":" + SELENOID_PORT + "/wd/hub"), capability);
         } catch (Exception e) {
             //Если нет Docker'a, запустится локально
-            return new ChromeDriver();
+            return new ChromeDriver(capability);
         }
-        return new ChromeDriver(capability);
     }
 
     /**

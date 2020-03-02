@@ -4,12 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-import java.util.Random;
-
 public class Pages {
 
     public static WebDriver driver;
-    public static Random rnd = new Random(System.currentTimeMillis());
 
     /**
      * Шапка страницы сайта

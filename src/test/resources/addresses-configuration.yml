@@ -1,0 +1,8 @@
+url:
+  selenoidHost: localhost
+  selenoidPort: 4444
+  host: www.sportmaster.ru
+
+browser:
+  name: chrome
+  version: "77.0"
