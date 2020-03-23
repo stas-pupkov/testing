@@ -16,7 +16,6 @@ import java.net.URL;
 public class Functions extends Utils {
 
     /**
-     * Универсальный метод
      * Открытие браузера в контейнере docker'a
      */
     public WebDriver openDefiniteBrowser() {
@@ -38,11 +37,14 @@ public class Functions extends Utils {
 
     /**
      * Ожидание появления заданного элемента на экране
-     * @param bySomething - параметр элемента
      */
     public void waitingAppearanceVisibility(By bySomething) {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOfElementLocated(bySomething));
+    }
+    public void waitingAppearanceVisibility(WebElement webElement) {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
     /**
@@ -52,9 +54,4 @@ public class Functions extends Utils {
         Assert.assertTrue(driver.findElement(bySomething).isDisplayed());
         driver.findElement(bySomething).click();
     }
-    public void clickBy(WebElement webElement) {
-        Assert.assertTrue(webElement.isDisplayed());
-        webElement.click();
-    }
-
 }

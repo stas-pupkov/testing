@@ -1,7 +1,7 @@
 url:
   selenoidHost: localhost
   selenoidPort: 4444
-  host: www.sportmaster.ru
+  host: https://market.evotor.ru/store/category/5ab418e8-23a7-49e9-9ccc-888367d64e9d
 
 browser:
   name: chrome
