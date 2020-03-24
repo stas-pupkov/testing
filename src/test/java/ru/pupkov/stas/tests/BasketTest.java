@@ -8,11 +8,13 @@ import ru.pupkov.stas.doc.Basket;
 
 public class BasketTest extends SettingsForBrowser implements Basket {
 
+    private String appTitle = "Интеграция 1С 8";
+
     @BeforeEach
     public void testPreparation() {
         AppsListPage appsListPage = new AppsListPage();
         waitingAppearanceVisibility(appsListPage.getAppTitle());
-        appsListPage.clickAppByTitle("Интеграция 1С 8");
+        appsListPage.clickAppByTitle(appTitle);
     }
 
     @Test
@@ -23,9 +25,10 @@ public class BasketTest extends SettingsForBrowser implements Basket {
 
         BasketForm basketForm = new BasketForm();
         waitingAppearanceVisibility(basketForm.getItemFromList());
-        Assert.assertTrue(basketForm.getItemFromList().getText().contains("Интеграция 1С 8"));
+        Assert.assertTrue(basketForm.getItemFromList().getText().contains(appTitle));
 
         basketForm.clickCloseButton();
+        waitingAppearanceVisibility(appPage.getBasketButton());
         Assert.assertEquals("1", new HeaderBar().getCountItems());
         Assert.assertEquals("В КОРЗИНЕ", driver.findElement(appPage.getBasketButton()).getText());
     }

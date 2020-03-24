@@ -3,6 +3,7 @@ package ru.pupkov.stas.base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import java.util.Iterator;
 import java.util.List;
@@ -15,7 +16,7 @@ public class Pages {
      * Шапка страницы сайта
      */
     public class HeaderBar {
-        private By basketArea = By.cssSelector("[class* = 'basket search-active-tablet-hide']");
+        private By basketArea = By.cssSelector("[class*='basket search-active-tablet-hide']");
         private By count = By.className("amount");
 
         /** Получить отображаемое количество товаров в корзине */
@@ -43,6 +44,7 @@ public class Pages {
                 WebElement application = iterator.next();
                 if (application.getText().matches(title)) {
                         application.click();
+                        break;
                 }
             }
         }

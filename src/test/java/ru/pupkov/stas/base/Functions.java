@@ -16,13 +16,13 @@ import java.net.URL;
 public class Functions extends Utils {
 
     /**
-     * Открытие браузера в контейнере docker'a
+     * Открытие браузера в контейнере Docker'a
      */
     public WebDriver openDefiniteBrowser() {
         DesiredCapabilities capability = new DesiredCapabilities();
         capability.setBrowserName(BROWSER_NAME);
         capability.setVersion(BROWSER_VERSION);
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         capability.setCapability("enableVNC", true);
         capability.setCapability("env", new String[]{"LANG=ru_RU.UTF-8", "LANGUAGE=ru:en", "LC_ALL=ru_RU.UTF-8"});
 
