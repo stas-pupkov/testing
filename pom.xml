@@ -20,7 +20,7 @@
         <junit-jupiter.version>5.5.2</junit-jupiter.version>
         <selenium.java.version>3.141.59</selenium.java.version>
         <selenium.leg.version>3.141.59</selenium.leg.version>
-        <snakeyaml.version>1.21</snakeyaml.version>
+        <snakeyaml.version>1.31</snakeyaml.version>
         <junit.platform.version>1.5.2</junit.platform.version>
     </properties>
 
